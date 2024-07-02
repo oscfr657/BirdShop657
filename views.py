@@ -16,7 +16,9 @@ from .models import ProductPage, StripeSettings, PaymentHistory
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
         site = Site.find_for_request(request)
-        product_page = ProductPage.objects.get(external_price_id=self.kwargs['external_price_id'])
+        product_page = ProductPage.objects.get(
+            external_price_id=self.kwargs['external_price_id']
+        )
         stripe.api_key = StripeSettings.for_request(request=request).STRIPE_SECRET_KEY
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -46,7 +48,7 @@ class SuccessView(View):
             'product_page': product_page,
             'customer_email': customer_email,
             'customer_name': customer_name,
-            }
+        }
         return render(request, 'success.html', context)
 
 
@@ -56,14 +58,11 @@ class CancelView(TemplateView):
 
 class ProductLandingPageView(TemplateView):
     template_name = 'landing.html'
- 
+
     def get_context_data(self, **kwargs):
         products = ProductPage.objects.live().public().order_by('-go_live_at')
-        context = super(ProductLandingPageView,
-                        self).get_context_data(**kwargs)
-        context.update({
-            'products': products
-        })
+        context = super(ProductLandingPageView, self).get_context_data(**kwargs)
+        context.update({'products': products})
         return context
 
 
@@ -72,10 +71,12 @@ class StripeWebhookView(View):
     """
     Stripe webhook view to handle events.
     """
+
     def post(self, request, format=None):
         payload = request.body
         stripewebhook_secret = StripeSettings.for_request(
-            request=request).STRIPE_WEBHOOK_SECRET
+            request=request
+        ).STRIPE_WEBHOOK_SECRET
         sig_header = request.META['HTTP_STRIPE_SIGNATURE']
         event = None
         try:
@@ -93,7 +94,9 @@ class StripeWebhookView(View):
             session = event['data']['object']
             customer_email = session['customer_details']['email']
             external_product_id = session['metadata']['external_product_id']
-            product_page = ProductPage.objects.get(external_product_id=external_product_id)
+            product_page = ProductPage.objects.get(
+                external_product_id=external_product_id
+            )
             """send_mail(
                 subject='Your product',
                 message=f'Thanks for your purchase. Your digital product: { product_page.file.url }',
@@ -107,7 +110,7 @@ class StripeWebhookView(View):
                 sku=product_page.sku,
                 external_price_id=product_page.external_price_id,
                 price=product_page.price,
-                payment_status='C'
+                payment_status='C',
             )
         # elif charge.succeeded, payment_intent.succeeded, payment_intent.created, charge.updated
         else:

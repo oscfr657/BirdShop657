@@ -18,15 +18,49 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProductPage',
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
+                (
+                    'page_ptr',
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to='wagtailcore.page',
+                    ),
+                ),
                 ('sku', models.CharField(blank=True, max_length=255, null=True)),
-                ('external_product_id', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    'external_product_id',
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
                 ('url', models.URLField(blank=True, null=True)),
-                ('external_price_id', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    'external_price_id',
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
                 ('price', models.IntegerField(default=0)),
                 ('exclude_from_sitemap', models.BooleanField(default=False)),
-                ('file', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtaildocs.document')),
-                ('image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image')),
+                (
+                    'file',
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name='+',
+                        to='wagtaildocs.document',
+                    ),
+                ),
+                (
+                    'image',
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name='+',
+                        to='wagtailimages.image',
+                    ),
+                ),
             ],
             options={
                 'abstract': False,
@@ -36,26 +70,94 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PaymentHistory',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('payment_status', models.CharField(choices=[('P', 'pending'), ('C', 'completed'), ('F', 'failed')], default='P', max_length=1)),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
+                (
+                    'payment_status',
+                    models.CharField(
+                        choices=[('P', 'pending'), ('C', 'completed'), ('F', 'failed')],
+                        default='P',
+                        max_length=1,
+                    ),
+                ),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('email', models.EmailField(max_length=100)),
                 ('sku', models.CharField(blank=True, max_length=255, null=True)),
-                ('external_product_id', models.CharField(blank=True, max_length=100, null=True)),
-                ('external_price_id', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    'external_product_id',
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                (
+                    'external_price_id',
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
                 ('price', models.IntegerField(default=0)),
-                ('product_page', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='birdshop657.productpage')),
+                (
+                    'product_page',
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to='birdshop657.productpage',
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
             name='StripeSettings',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('STRIPE_PUBLISHABLE_KEY', models.CharField(blank=True, help_text='Your public Stripe key', max_length=255, null=True)),
-                ('STRIPE_SECRET_KEY', models.CharField(blank=True, help_text='Your secret Stripe key', max_length=255, null=True)),
-                ('STRIPE_WEBHOOK_SECRET', models.CharField(blank=True, help_text='Your Stripe webhook secret', max_length=255, null=True)),
-                ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.site')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
+                (
+                    'STRIPE_PUBLISHABLE_KEY',
+                    models.CharField(
+                        blank=True,
+                        help_text='Your public Stripe key',
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    'STRIPE_SECRET_KEY',
+                    models.CharField(
+                        blank=True,
+                        help_text='Your secret Stripe key',
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    'STRIPE_WEBHOOK_SECRET',
+                    models.CharField(
+                        blank=True,
+                        help_text='Your Stripe webhook secret',
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    'site',
+                    models.OneToOneField(
+                        editable=False,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to='wagtailcore.site',
+                    ),
+                ),
             ],
             options={
                 'abstract': False,

@@ -1,2 +1,4 @@
-recursive-include birdshop657/static *
-recursive-include birdshop657/templates *
+include LICENSE.md
+include README.md
+recursive-include static/ *
+recursive-include templates/ *

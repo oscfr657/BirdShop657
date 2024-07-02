@@ -1,0 +1,4 @@
+Django>=5.0
+wagtail>=6.1.1
+wagtailmedia>=0.15.1
+stripe

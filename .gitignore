@@ -7,3 +7,4 @@ todo.txt
 */npm-debug.log
 .vscode
 *__pycache__
+env
