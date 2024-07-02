@@ -1,0 +1,2 @@
+recursive-include birdshop657/static *
+recursive-include birdshop657/templates *

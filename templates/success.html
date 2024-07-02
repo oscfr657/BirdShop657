@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/birdshop657/birdshop657.css' %}" >
+{% endblock extra_head %}
+
+{% block content %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+<div class="content ">
+    <section class="birdshop657 sucess">
+        <h1>Thank you!</h1>
+        {% if  product_page.file %}
+        <p>
+            Thank you <b>{{ customer_name }}</b> for purchassing: <a href="{{ product_page.file.url }}"><b>{{ product_page.title }}</b></a><br/>
+        </p>
+        {% elif  product_page.url %}
+        <p>
+            Thank you <b>{{ customer_name }}</b> for purchassing: <a href="{{ product_page.url }}"><b>{{ product_page.title }}</b></a><br/>
+        </p>
+        {% else %}
+        <p>
+            Thank you <b>{{ customer_name }}</b> for purchassing: <b>{{ product_page.title }}</b><br/>
+        </p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

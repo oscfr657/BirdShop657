@@ -1,0 +1,9 @@
+todo.txt
+*tmp
+**.pyc
+*.python_history
+.idea
+*/node_modules/
+*/npm-debug.log
+.vscode
+*__pycache__
