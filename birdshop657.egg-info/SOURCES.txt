@@ -10,6 +10,7 @@ birdshop657.egg-info/dependency_links.txt
 birdshop657.egg-info/requires.txt
 birdshop657.egg-info/top_level.txt
 migrations/0001_initial.py
+migrations/0002_rename_file_productpage_productfile.py
 migrations/__init__.py
 static/css/birdshop657/birdshop657.css
 static/js/birdshop657/birdshop657.js

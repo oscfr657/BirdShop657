@@ -6,7 +6,7 @@
 
 ### 15 July 2024 ###
 
-    file field on ProductPage renamed to productFile, app label removed.
+    file field on ProductPage renamed to productFile, app label removed. README error fix. Blacked views.py. Build version 0.1.0a.
 
 ### 2 July 2024 ###
 

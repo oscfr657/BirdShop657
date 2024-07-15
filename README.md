@@ -34,11 +34,11 @@ pip install -r requirements.txt
     python3 -m venv env
     source env/bin/activate
     python3 -m pip install black
-    python3 -m black . -S -t 310 -t 311 -t 312 --diff
-    python3 -m black . -S -t 310 -t 311 -t 312
+    python3 -m black . -S -t py310 -t py311 -t py312 --diff
+    python3 -m black . -S -t py310 -t py311 -t py312
 ```
 
-Update version in pyproject.toml
+Update version in setup.cfg
 
 Update CHANGELOG.md
 

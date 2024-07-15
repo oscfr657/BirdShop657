@@ -39,10 +39,14 @@ class CreateCheckoutSessionView(View):
 class SuccessView(View):
     def get(self, request):
         try:
-            stripe.api_key = StripeSettings.for_request(request=request).STRIPE_SECRET_KEY
+            stripe.api_key = StripeSettings.for_request(
+                request=request
+            ).STRIPE_SECRET_KEY
             session = stripe.checkout.Session.retrieve(request.GET.get('session_id'))
             external_product_id = session['metadata']['external_product_id']
-            product_page = ProductPage.objects.get(external_product_id=external_product_id)
+            product_page = ProductPage.objects.get(
+                external_product_id=external_product_id
+            )
             customer_email = session['customer_details']['email']
             customer_name = session['customer_details']['name']
             context = {

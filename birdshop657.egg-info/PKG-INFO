@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: birdshop657
-Version: 0.0.1a0
+Version: 0.1.0a0
 Summary: A small Wagtail shop app with Stripe integration.
 Home-page: https://github.com/oscfr657/BirdShop657
 Author: Oscar F
@@ -62,11 +62,11 @@ pip install -r requirements.txt
     python3 -m venv env
     source env/bin/activate
     python3 -m pip install black
-    python3 -m black . -S -t 310 -t 311 -t 312 --diff
-    python3 -m black . -S -t 310 -t 311 -t 312
+    python3 -m black . -S -t py310 -t py311 -t py312 --diff
+    python3 -m black . -S -t py310 -t py311 -t py312
 ```
 
-Update version in pyproject.toml
+Update version in setup.cfg
 
 Update CHANGELOG.md
 
