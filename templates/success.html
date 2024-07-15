@@ -11,9 +11,9 @@
 <div class="content ">
     <section class="birdshop657 sucess">
         <h1>Thank you!</h1>
-        {% if  product_page.file %}
+        {% if  product_page.productFile %}
         <p>
-            Thank you <b>{{ customer_name }}</b> for purchassing: <a href="{{ product_page.file.url }}"><b>{{ product_page.title }}</b></a><br/>
+            Thank you <b>{{ customer_name }}</b> for purchassing: <a href="{{ product_page.productFile.url }}"><b>{{ product_page.title }}</b></a><br/>
         </p>
         {% elif  product_page.url %}
         <p>

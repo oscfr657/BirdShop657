@@ -38,18 +38,21 @@ class CreateCheckoutSessionView(View):
 
 class SuccessView(View):
     def get(self, request):
-        stripe.api_key = StripeSettings.for_request(request=request).STRIPE_SECRET_KEY
-        session = stripe.checkout.Session.retrieve(request.GET.get('session_id'))
-        external_product_id = session['metadata']['external_product_id']
-        product_page = ProductPage.objects.get(external_product_id=external_product_id)
-        customer_email = session['customer_details']['email']
-        customer_name = session['customer_details']['name']
-        context = {
-            'product_page': product_page,
-            'customer_email': customer_email,
-            'customer_name': customer_name,
-        }
-        return render(request, 'success.html', context)
+        try:
+            stripe.api_key = StripeSettings.for_request(request=request).STRIPE_SECRET_KEY
+            session = stripe.checkout.Session.retrieve(request.GET.get('session_id'))
+            external_product_id = session['metadata']['external_product_id']
+            product_page = ProductPage.objects.get(external_product_id=external_product_id)
+            customer_email = session['customer_details']['email']
+            customer_name = session['customer_details']['name']
+            context = {
+                'product_page': product_page,
+                'customer_email': customer_email,
+                'customer_name': customer_name,
+            }
+            return render(request, 'success.html', context)
+        except:
+            return redirect(to='cancel', permanent=False)
 
 
 class CancelView(TemplateView):
@@ -99,7 +102,7 @@ class StripeWebhookView(View):
             )
             """send_mail(
                 subject='Your product',
-                message=f'Thanks for your purchase. Your digital product: { product_page.file.url }',
+                message=f'Thanks for your purchase. Your digital product: { product_page.productFile.url }',
                 recipient_list=[customer_email],
                 from_email='your@example.com',
             )"""

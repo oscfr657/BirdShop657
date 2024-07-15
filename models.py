@@ -30,7 +30,7 @@ class ProductPage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
     )
-    file = models.ForeignKey(
+    productFile = models.ForeignKey(
         'wagtaildocs.Document',
         on_delete=models.SET_NULL,
         related_name='+',
@@ -48,7 +48,7 @@ class ProductPage(Page):
         FieldPanel('sku'),
         FieldPanel('external_product_id'),
         FieldPanel('image'),
-        FieldPanel('file'),
+        FieldPanel('productFile'),
         FieldPanel('url'),
         FieldPanel('external_price_id'),
         FieldPanel('price'),
