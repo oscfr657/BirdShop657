@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.views import View
 from django.views.generic import TemplateView
 from django.core.mail import send_mail
@@ -104,13 +105,7 @@ class StripeWebhookView(View):
             product_page = ProductPage.objects.get(
                 external_product_id=external_product_id
             )
-            """send_mail(
-                subject='Your product',
-                message=f'Thanks for your purchase. Your digital product: { product_page.productFile.url }',
-                recipient_list=[customer_email],
-                from_email='your@example.com',
-            )"""
-            PaymentHistory.objects.create(
+            ph = PaymentHistory.objects.create(
                 email=customer_email,
                 product_page=product_page,
                 external_product_id=external_product_id,
@@ -119,6 +114,20 @@ class StripeWebhookView(View):
                 price=product_page.price,
                 payment_status='C',
             )
+            site = Site.find_for_request(request)
+            from_email = StripeSettings.for_request(
+                request=request
+            ).FROM_EMAIL
+            sent_email = send_mail(
+                subject=f'Your digital product: { product_page.title }',
+                message=f'Thank you for your purchase. Your digital product: { site.root_url }{ product_page.productFile.url }',
+                from_email=from_email,
+                recipient_list=[customer_email],
+                html_message=f'<p>Thank you for your purchase. Your digital product: <a href="{ site.root_url }{ product_page.productFile.url }"><b>{ product_page.title }</b></a></p>',
+            )
+            if sent_email >= 1:
+                ph.sent_email = timezone.now()
+                ph.save()
         # elif charge.succeeded, payment_intent.succeeded, payment_intent.created, charge.updated
         else:
             print('Unhandled event type {}'.format(event.type))

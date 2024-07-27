@@ -18,6 +18,9 @@ class StripeSettings(BaseSiteSetting):
     STRIPE_WEBHOOK_SECRET = models.CharField(
         max_length=255, blank=True, null=True, help_text='Your Stripe webhook secret'
     )
+    FROM_EMAIL = models.CharField(
+        max_length=255, blank=True, null=True, help_text='Your from email'
+    )
 
 
 class ProductPage(Page):
@@ -83,6 +86,7 @@ class PaymentHistory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     email = models.EmailField(max_length=100)
+    sent_email = models.DateTimeField(blank=True, null=True)
 
     product_page = models.ForeignKey(
         ProductPage, on_delete=models.SET_NULL, blank=True, null=True
