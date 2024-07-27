@@ -54,16 +54,10 @@ Update CHANGELOG.md
 
 ### Todo: ###
 
- - 0.1.0a
-    * productFile field on ProductPage
- - 0.2.0a
-    * Add/activate send_mail in webhook
  - 0.3.0a
+    * Customers request products by email page
     * Improved documentation
  - 0.4.0a
-    * ProductFiles model
- - 0.5.0a
-    * protectedProductFile field on ProductPage
     * product_page_title field on PaymentHistory
     * Create and set listed fields static in a PaymentHistoryAdmin
         * product_page
@@ -72,12 +66,17 @@ Update CHANGELOG.md
         * external_product_id
         * external_price_id
         * price
- - 0.6.0a
-    * Customers request products by email page
+ - 0.5.0a
     * payment_method_types settings
+    * ProductFiles model
+ - 0.6.0a
+    * protectedProductFile field on ProductPage
  - 0.7.0a
-    * GDPR pop up?
-    * Tests
     * Improved Success page design
     * Improved Cancel page design
+ - 0.8.0
+    * Tests
+ - 0.9.0a
+    * GDPR pop up?
+ - 0.10.0a
     * Embedded form

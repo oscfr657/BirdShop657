@@ -11,6 +11,8 @@ birdshop657.egg-info/requires.txt
 birdshop657.egg-info/top_level.txt
 migrations/0001_initial.py
 migrations/0002_rename_file_productpage_productfile.py
+migrations/0003_paymenthistory_sent_email.py
+migrations/0004_stripesettings_from_email.py
 migrations/__init__.py
 static/css/birdshop657/birdshop657.css
 static/js/birdshop657/birdshop657.js
