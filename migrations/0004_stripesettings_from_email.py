@@ -13,6 +13,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='stripesettings',
             name='FROM_EMAIL',
-            field=models.CharField(blank=True, help_text='Your from email', max_length=255, null=True),
+            field=models.CharField(
+                blank=True, help_text='Your from email', max_length=255, null=True
+            ),
         ),
     ]

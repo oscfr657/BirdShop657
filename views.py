@@ -115,9 +115,7 @@ class StripeWebhookView(View):
                 payment_status='C',
             )
             site = Site.find_for_request(request)
-            from_email = StripeSettings.for_request(
-                request=request
-            ).FROM_EMAIL
+            from_email = StripeSettings.for_request(request=request).FROM_EMAIL
             sent_email = send_mail(
                 subject=f'Your digital product: { product_page.title }',
                 message=f'Thank you for your purchase. Your digital product: { site.root_url }{ product_page.productFile.url }',
