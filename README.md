@@ -54,10 +54,10 @@ Update CHANGELOG.md
 
 ### Todo: ###
 
- - 0.3.0a
+ - 0.4.0a
     * Customers request products by email page
     * Improved documentation
- - 0.4.0a
+ - 0.5.0a
     * product_page_title field on PaymentHistory
     * Create and set listed fields static in a PaymentHistoryAdmin
         * product_page
@@ -66,17 +66,18 @@ Update CHANGELOG.md
         * external_product_id
         * external_price_id
         * price
- - 0.5.0a
-    * payment_method_types settings
+ - 0.6.0b
     * ProductFiles model
- - 0.6.0a
+ - 0.7.0b
     * protectedProductFile field on ProductPage
- - 0.7.0a
+ - 0.8.0b
     * Improved Success page design
     * Improved Cancel page design
- - 0.8.0
+ - 0.9.0
     * Tests
- - 0.9.0a
+ - 1.0.0
+    * Release Tag 1.0.0
+ - 1.1.0a
     * GDPR pop up?
- - 0.10.0a
+ - 1.2.0a
     * Embedded form

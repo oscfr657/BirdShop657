@@ -4,7 +4,15 @@
 
 ## commits ##
 
- ### 27 July 2024 ###
+### 27 October 2024 ###
+
+    Added async_payment events handling to StripeWebhookView. 
+    Now handle payment_method_types in Stripe Dashboard. 
+    Templates schema.org improvements.
+    Build version 0.3.0a
+
+### 27 July 2024 ###
+
     Added send_mail to webhook. Black. Build version 0.2.0a.
 
 ### 15 July 2024 ###

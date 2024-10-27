@@ -22,7 +22,6 @@ class CreateCheckoutSessionView(View):
         )
         stripe.api_key = StripeSettings.for_request(request=request).STRIPE_SECRET_KEY
         checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
             line_items=[
                 {
                     'price': product_page.external_price_id,
@@ -112,6 +111,36 @@ class StripeWebhookView(View):
                 sku=product_page.sku,
                 external_price_id=product_page.external_price_id,
                 price=product_page.price,
+                payment_status='P',
+            )
+            if session.payment_status == "paid":
+                ph.payment_status = 'C'
+                site = Site.find_for_request(request)
+                from_email = StripeSettings.for_request(request=request).FROM_EMAIL
+                sent_email = send_mail(
+                    subject=f'Your digital product: { product_page.title }',
+                    message=f'Thank you for your purchase. Your digital product: { site.root_url }{ product_page.productFile.url }',
+                    from_email=from_email,
+                    recipient_list=[customer_email],
+                    html_message=f'<p>Thank you for your purchase. Your digital product: <a href="{ site.root_url }{ product_page.productFile.url }"><b>{ product_page.title }</b></a></p>',
+                )
+                if sent_email >= 1:
+                    ph.sent_email = timezone.now()
+                    ph.save()
+        elif event['type'] == 'checkout.session.async_payment_succeeded':
+            session = event['data']['object']
+            customer_email = session['customer_details']['email']
+            external_product_id = session['metadata']['external_product_id']
+            product_page = ProductPage.objects.get(
+                external_product_id=external_product_id
+            )
+            ph = PaymentHistory.objects.create(
+                email=customer_email,
+                product_page=product_page,
+                external_product_id=external_product_id,
+                sku=product_page.sku,
+                external_price_id=product_page.external_price_id,
+                price=product_page.price,
                 payment_status='C',
             )
             site = Site.find_for_request(request)
@@ -126,8 +155,37 @@ class StripeWebhookView(View):
             if sent_email >= 1:
                 ph.sent_email = timezone.now()
                 ph.save()
+        elif event['type'] == 'checkout.session.async_payment_failed':
+            session = event['data']['object']
+            customer_email = session['customer_details']['email']
+            external_product_id = session['metadata']['external_product_id']
+            product_page = ProductPage.objects.get(
+                external_product_id=external_product_id
+            )
+            ph = PaymentHistory.objects.create(
+                email=customer_email,
+                product_page=product_page,
+                external_product_id=external_product_id,
+                sku=product_page.sku,
+                external_price_id=product_page.external_price_id,
+                price=product_page.price,
+                payment_status='F',
+            )
+            site = Site.find_for_request(request)
+            from_email = StripeSettings.for_request(request=request).FROM_EMAIL
+            sent_email = send_mail(
+                subject=f'Your payment failed: { product_page.title }',
+                message=f'Your payment for: { product_page.title } failed. Please try again! { site.root_url }{ product_page }',
+                from_email=from_email,
+                recipient_list=[customer_email],
+                html_message=f'<p>Your payment for: { product_page.title } failed.<br><a href="{ site.root_url }">Please try again!</a></p>',
+            )
+            if sent_email >= 1:
+                ph.sent_email = timezone.now()
+                ph.save()
         # elif charge.succeeded, payment_intent.succeeded, payment_intent.created, charge.updated
         else:
-            print('Unhandled event type {}'.format(event.type))
+            pass
+            # print('Unhandled event type {}'.format(event.type))
 
         return HttpResponse(status=200)
