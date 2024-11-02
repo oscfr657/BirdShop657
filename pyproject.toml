@@ -1,3 +1,54 @@
 [bild-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "birdshop657"
+version = "0.4.0a"
+authors = [
+  { name="Oscar F" },
+]
+description = "A small Wagtail shop app with Stripe integration."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">= 3.10"
+dependencies = [
+    "django >= 5.1",
+    "wagtail >= 6.2.2",
+    "wagtailmedia >= 0.15.2",
+    "stripe",
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Wagtail",
+    "Framework :: Wagtail :: 6",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+
+[project.urls]
+repository = "https://github.com/oscfr657/birdshop657.git"
+
+[tool.setuptools]
+packages = ["birdshop657"]
+package-dir = {'birdshop657' = '.'}
+
+[tool.setuptools.package-data]
+birdshop657 = [
+  './migrations/*',
+  './static/*/*/*',
+  './static/*/*/*/*',
+  './templates/*',
+  './templates/*/*',
+  ]

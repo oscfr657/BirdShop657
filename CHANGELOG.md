@@ -4,6 +4,10 @@
 
 ## commits ##
 
+### 2 November 2024 ###
+
+    Use pyproject.toml for build. Build version 0.4.0a
+
 ### 27 October 2024 ###
 
     Added async_payment events handling to StripeWebhookView. 
