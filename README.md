@@ -31,8 +31,8 @@ pip install -r requirements.txt
 ### Build a new release ###
 
 ``` bash
-    python3 -m venv env
-    source env/bin/activate
+    python3 -m venv .venv
+    source .venv/bin/activate
     python3 -m pip install black
     python3 -m black . -S -t py310 -t py311 -t py312 --diff
     python3 -m black . -S -t py310 -t py311 -t py312
@@ -54,10 +54,10 @@ Update CHANGELOG.md
 
 ### Todo: ###
 
- - 0.4.0a
+ - 0.5.0a
     * Customers request products by email page
     * Improved documentation
- - 0.5.0a
+ - 0.6.0a
     * product_page_title field on PaymentHistory
     * Create and set listed fields static in a PaymentHistoryAdmin
         * product_page
@@ -66,14 +66,14 @@ Update CHANGELOG.md
         * external_product_id
         * external_price_id
         * price
- - 0.6.0b
-    * ProductFiles model
  - 0.7.0b
-    * protectedProductFile field on ProductPage
+    * ProductFiles model
  - 0.8.0b
+    * protectedProductFile field on ProductPage
+ - 0.9.0b
     * Improved Success page design
     * Improved Cancel page design
- - 0.9.0
+ - 0.10.0
     * Tests
  - 1.0.0
     * Release Tag 1.0.0
