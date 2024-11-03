@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "birdshop657"
-version = "0.4.0a"
+version = "0.4.1a"
 authors = [
   { name="Oscar F" },
 ]
@@ -14,9 +14,9 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">= 3.10"
 dependencies = [
-    "django >= 5.1",
-    "wagtail >= 6.2.2",
-    "wagtailmedia >= 0.15.2",
+    "django",
+    "wagtail",
+    "wagtailmedia",
     "stripe",
 ]
 
