@@ -4,6 +4,10 @@
 
 ## commits ##
 
+### 3 November 2024 ###
+
+    Build bug fix. Build version 0.4.1a
+
 ### 2 November 2024 ###
 
     Use pyproject.toml for build. Build version 0.4.0a
