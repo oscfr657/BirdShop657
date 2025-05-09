@@ -185,7 +185,7 @@ class StripeWebhookView(View):
                 ph.save()
         # elif charge.succeeded, payment_intent.succeeded, payment_intent.created, charge.updated
         else:
-            pass
-            # print('Unhandled event type {}'.format(event.type))
+            print(f'Unhandled event type {event}')
+            print(f'Unhandled event type {event.type}')
 
         return HttpResponse(status=200)

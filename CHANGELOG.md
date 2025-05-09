@@ -4,6 +4,10 @@
 
 ## commits ##
 
+### 9 May 2025 ###
+
+    feat: Dynamic versioning with VERSION.txt, custom PaymentHistoryAdmin, Build 0.5.0a0
+
 ### 3 November 2024 ###
 
     Build bug fix. Build version 0.4.1a

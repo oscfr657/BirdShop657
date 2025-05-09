@@ -1,9 +1,9 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: birdshop657
-Version: 0.4.1a0
+Version: 0.5.0a0
 Summary: A small Wagtail shop app with Stripe integration.
 Author: Oscar F
-License: MIT
+License-Expression: MIT
 Project-URL: repository, https://github.com/oscfr657/birdshop657.git
 Classifier: Development Status :: 3 - Alpha
 Classifier: Environment :: Web Environment
@@ -26,6 +26,7 @@ Requires-Dist: django
 Requires-Dist: wagtail
 Requires-Dist: wagtailmedia
 Requires-Dist: stripe
+Dynamic: license-file
 
 # BirdShop657 #
 
@@ -53,11 +54,19 @@ pip install -r requirements.txt
 
 ### Stripe CLI ###
 
-    stripe login
+   stripe login
 
-    stripe listen --forward-to localhost/webhooks/stripe/
+   stripe listen --forward-to localhost/webhooks/stripe/
 
-### Build a new release ###
+   Set your webhook signing secret in wagtail admin.
+
+### Stripe Dashboard ###
+
+   Get API keys from the [dashboard](https://dashboard.stripe.com/test/apikeys).
+
+### Build and publish a new release ###
+
+#### Black ####
 
 ``` bash
     python3 -m venv .venv
@@ -67,14 +76,22 @@ pip install -r requirements.txt
     python3 -m black . -S -t py310 -t py311 -t py312
 ```
 
-Update version in setup.cfg
+#### Update version ###
+
+Use [Trunk Based Development](https://trunkbaseddevelopment.com/), [Semver](semver.org) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+Update version in VERSION.txt
 
 Update CHANGELOG.md
+
+#### Build ####
 
 ``` bash
    python3 -m pip install build
    python3 -m build
 ```
+
+#### Commit and Push ####
 
 ```Git
    git commit -a -m 'Cangelog message.'
@@ -83,26 +100,19 @@ Update CHANGELOG.md
 
 ### Todo: ###
 
- - 0.5.0a
+ - 0.6.0a
     * Customers request products by email page
     * Improved documentation
- - 0.6.0a
-    * product_page_title field on PaymentHistory
-    * Create and set listed fields static in a PaymentHistoryAdmin
-        * product_page
-        * product_page_title
-        * sku
-        * external_product_id
-        * external_price_id
-        * price
- - 0.7.0b
-    * ProductFiles model
+ - 0.7.0a
+    * [Migrating from ModelAdmin to Wagtail’s built-in features](https://wagtail-modeladmin.readthedocs.io/en/latest/migrating.html#migrating-from-modeladmin-to-wagtail-s-built-in-features)
  - 0.8.0b
-    * protectedProductFile field on ProductPage
+    * ProductFiles model
  - 0.9.0b
+    * protectedProductFile field on ProductPage
+ - 0.10.0b
     * Improved Success page design
     * Improved Cancel page design
- - 0.10.0
+ - 0.11.0
     * Tests
  - 1.0.0
     * Release Tag 1.0.0

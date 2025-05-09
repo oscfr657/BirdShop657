@@ -1,17 +1,20 @@
-[bild-system]
-requires = ["setuptools>=61.0"]
+[build-system]
+requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 
 [project]
 name = "birdshop657"
-version = "0.4.1a"
+dynamic = ["version"]
 authors = [
   { name="Oscar F" },
 ]
 description = "A small Wagtail shop app with Stripe integration."
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
+license-files = [
+  "LICENSE.md",
+]
 requires-python = ">= 3.10"
 dependencies = [
     "django",
@@ -52,3 +55,6 @@ birdshop657 = [
   './templates/*',
   './templates/*/*',
   ]
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION.txt"}
