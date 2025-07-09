@@ -49,6 +49,14 @@ class SuccessView(View):
             )
             customer_email = session['customer_details']['email']
             customer_name = session['customer_details']['name']
+            ph = PaymentHistory.objects.get_or_create(
+                email=customer_email,
+                product_page=product_page,
+                external_product_id=external_product_id,
+                sku=product_page.sku,
+                external_price_id=product_page.external_price_id,
+                price=product_page.price,
+            )
             context = {
                 'product_page': product_page,
                 'customer_email': customer_email,
@@ -104,7 +112,7 @@ class StripeWebhookView(View):
             product_page = ProductPage.objects.get(
                 external_product_id=external_product_id
             )
-            ph = PaymentHistory.objects.create(
+            ph = PaymentHistory.objects.get_or_create(
                 email=customer_email,
                 product_page=product_page,
                 external_product_id=external_product_id,
@@ -134,7 +142,7 @@ class StripeWebhookView(View):
             product_page = ProductPage.objects.get(
                 external_product_id=external_product_id
             )
-            ph = PaymentHistory.objects.create(
+            ph = PaymentHistory.objects.get_or_create(
                 email=customer_email,
                 product_page=product_page,
                 external_product_id=external_product_id,
@@ -162,7 +170,7 @@ class StripeWebhookView(View):
             product_page = ProductPage.objects.get(
                 external_product_id=external_product_id
             )
-            ph = PaymentHistory.objects.create(
+            ph = PaymentHistory.objects.get_or_create(
                 email=customer_email,
                 product_page=product_page,
                 external_product_id=external_product_id,
