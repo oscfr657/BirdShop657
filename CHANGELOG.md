@@ -4,6 +4,12 @@
 
 ## commits ##
 
+### 9 July 2025 ###
+
+    doc: Improved README.md, updated CHANGELOG.md, Updated license copyright year.
+    build: 0.6.0a0
+    feat: Added get_or_create PaymentHistory to SuccessView, updated StripeWebhookView with the same.
+
 ### 9 May 2025 ###
 
     feat: Dynamic versioning with VERSION.txt, custom PaymentHistoryAdmin, Build 0.5.0a0

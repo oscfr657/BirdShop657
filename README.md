@@ -24,15 +24,15 @@ pip install -r requirements.txt
 
 ### Stripe CLI ###
 
-   stripe login
+    stripe login
 
-   stripe listen --forward-to localhost/webhooks/stripe/
+    stripe listen --forward-to localhost/webhooks/stripe/
 
-   Set your webhook signing secret in wagtail admin.
+    Set your webhook signing secret in wagtail admin.
 
 ### Stripe Dashboard ###
 
-   Get API keys from the [dashboard](https://dashboard.stripe.com/test/apikeys).
+    Get API keys from the [dashboard](https://dashboard.stripe.com/test/apikeys).
 
 ### Build and publish a new release ###
 
@@ -57,36 +57,20 @@ Update CHANGELOG.md
 #### Build ####
 
 ``` bash
-   python3 -m pip install build
-   python3 -m build
-```
-
-#### Commit and Push ####
-
-```Git
-   git commit -a -m 'Cangelog message.'
-   git push
+    python3 -m pip install build
+    python3 -m build
 ```
 
 ### Todo: ###
 
- - 0.6.0a
-    * Customers request products by email page
-    * Improved documentation
- - 0.7.0a
-    * [Migrating from ModelAdmin to Wagtail’s built-in features](https://wagtail-modeladmin.readthedocs.io/en/latest/migrating.html#migrating-from-modeladmin-to-wagtail-s-built-in-features)
- - 0.8.0b
-    * ProductFiles model
- - 0.9.0b
-    * protectedProductFile field on ProductPage
- - 0.10.0b
-    * Improved Success page design
-    * Improved Cancel page design
- - 0.11.0
-    * Tests
- - 1.0.0
-    * Release Tag 1.0.0
- - 1.1.0a
-    * GDPR pop up?
- - 1.2.0a
-    * Embedded form
+  * Customers request products by email page
+  * Improved documentation
+  * [Migrating from ModelAdmin to Wagtail’s built-in features](https://wagtail-modeladmin.readthedocs.io/en/latest/migrating.html#migrating-from-modeladmin-to-wagtail-s-built-in-features)
+  * ProductFiles model
+  * protectedProductFile field on ProductPage
+  * Improved Success page design
+  * Improved Cancel page design
+  * Tests
+  * Release Tag 1.0.0
+  * GDPR pop up?
+  * Embedded form
